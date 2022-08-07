@@ -15,8 +15,16 @@ function getMoviesFromDirector(array, director) {
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
-  
+  let filmdata = getMoviesFromDirector(array, director);
+  // console.log (filmdata);
+  let scoredata = filmdata.map(e => e.score);
+  // console.log(scoredata);
+  let resultScore = scoredata.reduce((a,b) => (a + b));
+  let calcScore = Number((resultScore / filmdata.length).toFixed(2));
+  console.log("EXERCICE 3 ->", calcScore);
+  return calcScore;
 }
+// moviesAverageOfDirector(movies, 'Francis Ford Coppola'); // => Comprobación
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
