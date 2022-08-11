@@ -15,12 +15,16 @@ function getMoviesFromDirector(array, director) {
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
-  let filmdata = getMoviesFromDirector(array, director);
-  // console.log (filmdata);
-  let scoredata = filmdata.map(e => e.score);
-  // console.log(scoredata);
-  let resultScore = scoredata.reduce((a,b) => (a + b));
-  let calcScore = Number((resultScore / filmdata.length).toFixed(2));
+  let movies = getMoviesFromDirector(array, director);
+  let scoreData = moviesAverage(movies);
+  return scoreData;
+}
+
+//Creo la función moviesAverage
+function moviesAverage(movies){
+  let scores = movies.map(e => e.score);
+  let resultScore = scores.reduce((a,b) => (a + b));
+  let calcScore = Number((resultScore / movies.length).toFixed(2));
   console.log("EXERCICE 3 ->", calcScore);
   return calcScore;
 }
@@ -28,18 +32,45 @@ function moviesAverageOfDirector(array, director) {
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
-  
+  let titleData = array.map(e => e.title);
+  let orderedTitle = titleData.sort();
+  let only20 = orderedTitle.slice(0, 20);
+  console.log("EXERCICE 4 ->", only20);
+  return only20;
 }
+// orderAlphabetically(movies); // => Comprobación
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
-
+function orderByYear(array) {
+  let myArray = array.map(e => ({...e}));
+  
+  myArray.sort( (a,b) =>{
+    if (a.year < b.year){
+      return -1;
+    }
+    if (a.year > b.year){
+      return 1;
+    }
+    if (a.title.toLowerCase() < b.title.toLowerCase()){
+      return -1;
+    }
+    if (a.title.toLowerCase() > b.title.toLowerCase()){
+      return 1;
+    }
+    return 0;
+  })
+    
+  console.log("EXERCISE 5 ->", myArray);
+  return myArray; 
 }
+// orderByYear(movies); // => Comprobación
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
+function moviesAverageByCategory(array) {
+  
 
 }
+// moviesAverageByCategory(movies); // => Comprobacion
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
@@ -67,3 +98,4 @@ if (typeof module !== 'undefined') {
     bestFilmOfYear,
   };
 }
+
