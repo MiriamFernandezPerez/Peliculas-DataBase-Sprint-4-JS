@@ -22,12 +22,12 @@ function moviesAverageOfDirector(array, director) {
 
 //Creo la función moviesAverage
 function moviesAverage(movies){
-  let scores = movies.map(e => e.score);
-  let resultScore = scores.reduce((a,b) => (a + b));
-  let calcScore = Number((resultScore / movies.length).toFixed(2));
+  let scoresData = movies.map(e => e.score).filter(score => score !== ''); 
+  let resultScore = scoresData.reduce((a,b) => (a + b));
+  let calcScore = Number((resultScore / scoresData.length).toFixed(2));
   console.log("EXERCICE 3 ->", calcScore);
   return calcScore;
-}
+};
 // moviesAverageOfDirector(movies, 'Francis Ford Coppola'); // => Comprobación
 
 // Exercise 4:  Alphabetic order by title 
@@ -66,11 +66,13 @@ function orderByYear(array) {
 // orderByYear(movies); // => Comprobación
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory(array) {
-  
-
+function moviesAverageByCategory(array, genre) {
+  let movies = array.filter(e => e.genre.includes(genre));
+  let result = moviesAverage(movies);
+  console.log("EXERCICE 6 ->", result);
+  return result;
 }
-// moviesAverageByCategory(movies); // => Comprobacion
+// moviesAverageByCategory(movies, 'Crime'); // => Comprobacion
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
@@ -98,4 +100,3 @@ if (typeof module !== 'undefined') {
     bestFilmOfYear,
   };
 }
-
