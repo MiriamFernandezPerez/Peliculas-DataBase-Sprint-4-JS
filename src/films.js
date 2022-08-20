@@ -102,9 +102,15 @@ function hoursToMinutes(array) {
 // hoursToMinutes(movies); // => Comprobacion
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
+function bestFilmOfYear(array, year) {
+  let filmsOfYear = array.filter( e => e.year === year);
+  let scoresOfFilms = filmsOfYear.map (e => e.score);
+  let scoresOrdered = scoresOfFilms.sort((a,b) => a>b);
+  let result = filmsOfYear.filter( e => e.score === scoresOrdered[0]);
+  console.log("EXERCICE 8 ->", result);
+  return result;
 }
+// bestFilmOfYear(movies, 1992 ); //Comprobacion
 
 
 
@@ -123,15 +129,3 @@ if (typeof module !== 'undefined') {
   };
 }
 
-// let moviesOnHours = array.map(e => {
-  //   let separate = (e.duration.split(" "));
-  //   console.log(separate);
-    
-    // let hours = separate.split("h");
-    // console.log(hours);
-    // let minutes = hours[1].split("min");
-    // console.log(minutes);
-    // let totalMinutes = hours + minutes;
-    // console.log(totalMinutes);
-  // });
-  // console.log(moviesOnHours);
