@@ -120,22 +120,7 @@ npm run test:watch
 
 ## 🏷️ Licencia y créditos
 
-Proyecto formativo (IT Academy). Datos y tests a partir del ejercicio "Sprint 4".
+Proyecto formativo (IT Academy).
 
 ---
 
-## ✨ Cambia el nombre del repositorio (recomendación)
-
-**Nombre propuesto:** `peliculas-funcionales-js`
-
-> Por qué: es descriptivo, corto y comunica claramente que el repo trata procesamiento funcional de datos de películas en JavaScript.
-
----
-
-Si quieres, puedo también:
-
-* Generar un archivo `CHANGELOG.md` con los pasos que has hecho.
-* Preparar un `CONTRIBUTING.md` con instrucciones para tu mentor.
-* Crear una PR template / issue template para recibir feedback.
-
-¡Dime qué prefieres y lo hago! 🚀
