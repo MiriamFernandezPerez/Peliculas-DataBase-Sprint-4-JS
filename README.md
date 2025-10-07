@@ -1,86 +1,141 @@
-# Sprint 4 IT Academy | Video management tool
+# 🎬 Películas DataBase (Sprint 4)
 
-## Introduction
+> **Proyecto:** Sprint 4 - IT Academy / Procesamiento de datos de películas en JavaScript
 
-A company in the audiovisual sector has asked us for a web application that will allow their employees to quickly find movies from a large database they have, since the process is currently done manually.
+---
 
-You will be in charge of setting up the core of the application: all the logic of filtering and sorting of movies. You have 2 weeks to finish, which is how long this sprint lasts.
+## 🔎 Descripción
 
-<br>
+Este repositorio contiene la **lógica** (backend/no-UI) para un ejercicio formativo de la IT Academy: un conjunto de funciones en JavaScript para **procesar**, **filtrar** y **ordenar** una base de datos de películas (250 elementos). El objetivo principal es practicar **programación funcional** usando métodos de arrays ES6 (`map`, `filter`, `reduce`, `sort`) y aplicar principios de **inmutabilidad** y **pureza**.
 
-## Requirements
+> Nota: la interfaz (`src/index.html`) está únicamente como marcador; las pruebas validan la lógica sin necesidad de una UI.
 
+---
 
-1. Clone this repo
+## ✅ Objetivos del proyecto
+
+* Implementar 8 funciones puras que operan sobre el array de películas.
+* Usar exclusivamente métodos de arrays ES6 (no `for`, `while` ni `forEach`).
+* Mantener inmutabilidad: **no mutar** los arrays/objetos de entrada.
+* Pasar todas las pruebas unitarias (Jest) y generar el informe HTML de resultados.
+
+---
+
+## 📁 Estructura del repositorio
+
+```
+├── src/
+│   ├── data.js        # dataset estático (250 películas)
+│   └── films.js       # implementaciones a completar
+├── tests/
+│   └── films.spec.js  # especificaciones (tests) — fuente de requisitos
+├── package.json       # scripts & configuraciones de test (Jest + reportes)
+└── README.md
+```
+
+---
+
+## 🛠️ Funciones a implementar (resumen)
+
+Cada función debe ser pura, inmutable y usar métodos de arrays.
+
+1. **getAllDirectors(movies)** → `Array<string>`
+
+   * Extrae y devuelve todos los directores (map).
+
+2. **getMoviesFromDirector(movies, director)** → `Array<Movie>`
+
+   * Filtra las películas por director (filter).
+
+3. **moviesAverageOfDirector(movies, director)** → `number`
+
+   * Media de `score` de un director (filter + reduce). Debe devolver `number` con 2 decimales.
+
+4. **orderAlphabetically(movies)** → `Array<string>`
+
+   * Devuelve los primeros 20 títulos ordenados alfabéticamente (sort + slice) sin mutar.
+
+5. **orderByYear(movies)** → `Array<Movie>`
+
+   * Ordena por año ascendente; en caso de empate, por título (sort).
+
+6. **moviesAverageByCategory(movies, genre)** → `number`
+
+   * Media de `score` por categoría/género (filter + reduce). Resultado con 2 decimales.
+
+7. **hoursToMinutes(movies)** → `Array<Movie>`
+
+   * Convierte `duration` como "2h 22min" → `144` minutos. Devuelve nuevo array transformado (map).
+
+8. **bestFilmOfYear(movies, year)** → `Array<Movie>`
+
+   * Devuelve la(s) película(s) mejor puntuadas de un año dado (filter + reduce / find max).
+
+---
+
+## ⚠️ Reglas y restricciones importantes
+
+* ✅ **Obligatorio:** usar `map`, `filter`, `reduce`, `sort` (no bucles tradicionales ni `forEach`).
+* ✅ **Inmutabilidad:** nunca mutar los arrays u objetos de entrada; devolver siempre nuevas estructuras.
+* ✅ **Precisión numérica:** las medias deben redondearse a **2 decimales** (p. ej. `6.50`).
+* ✅ **Tipos:** las funciones que devuelven números deben devolver un `number` (no strings).
+
+---
+
+## 🧪 Tests y reporte
+
+* Instala dependencias y ejecuta los tests con:
+
 ```bash
-$ git clone https://github.com/itacademyReact/starter-code-sprint4.git
+npm install
+npm run test
+# o para ver el reporter HTML en caliente
+npm run test:watch
 ```
 
-2. Unlink your repo from the itacademy repository
-```bash
-$ git remote rm origin
-```
+* El proyecto usa `jest` para las pruebas y un reportero HTML (configurado en `package.json`) que genera un archivo tipo `test-results.html` o `resultados-de-la-prueba.html`. Abre ese HTML con Live Server o en tu navegador para capturar una **pantalla** que muestre todas las pruebas aprobadas (esto es requerido por el campus virtual para la entrega).
 
-3. Link your repo to the repository you have to create in your github account
-```bash
-$ git remote add <your repo name!>
-```
+---
 
-<br>
+## 📸 Entrega / Evaluación
 
-## Submission
+1. Implementa todas las funciones en `src/films.js` siguiendo los tests en `tests/films.spec.js`.
+2. `git add . && git commit -m "Sprint Solution" && git push origin main`
+3. Crea **Pull Request** en GitHub.
+4. Sube al Campus Virtual:
 
-1. Upon completion, run the following commands:
+   * Enlace al PR
+   * Captura de pantalla del informe HTML con todas las pruebas pasadas
 
-```bash
-$ git add .
-$ git commit -m "Sprint Solution"
-$ git push origin master
-```
+---
 
-2. Create Pull Request.
+## 🧭 Buenas prácticas y consejos
 
-3. Upload the link to the virtual campus so that your mentor can correct it and give you feedback.
+* Escribe funciones pequeñas y legibles; aprovecha el encadenado (`movies.filter(...).map(...).reduce(...)`).
+* Para la conversión de tiempo, maneja casos donde falte `h` o `min` (p. ej. "2h", "34min").
+* Para redondeo a 2 decimales: usa `Math.round(valor * 100) / 100` o `Number(valor.toFixed(2))`.
+* Añade `console.log` solo para debug; el reportero HTML puede capturar `console.log` si está configurado.
 
+---
 
+## 🏷️ Licencia y créditos
 
-<br>
+Proyecto formativo (IT Academy). Datos y tests a partir del ejercicio "Sprint 4".
 
-## Introduction
+---
 
-The statement of the exercise is available on the virtual campus.
+## ✨ Cambia el nombre del repositorio (recomendación)
 
-<br>
+**Nombre propuesto:** `peliculas-funcionales-js`
 
-## Tests!
+> Por qué: es descriptivo, corto y comunica claramente que el repo trata procesamiento funcional de datos de películas en JavaScript.
 
+---
 
-```shell
-$ npm install
-$ npm run test:watch
-```
+Si quieres, puedo también:
 
-And last, open the generated `test-results.html` file with the "Live Server" VSCode extension to see test results.
+* Generar un archivo `CHANGELOG.md` con los pasos que has hecho.
+* Preparar un `CONTRIBUTING.md` con instrucciones para tu mentor.
+* Crear una PR template / issue template para recibir feedback.
 
-Apart from the statement, you will know exactly what you are asked to do by looking at the file `tests/films.spec.js`, all tests are already defined here!
-
-<br>
-
-## Instructions
-
-You have the following indications from the frontend responsible:
-
-- It is mandatory to implement all loops in ES6 (using map, reduce, filter and sort to manipulate arrays).
-
-- As at the moment we don't consume data from a server using an API, we will work with data from the src/data.js archive. For the moment we will implement the logic using
-an array of information about 250 movies.
-
-- The implementation is about processing this array of movies, to display it as requested in each exercise.
-
-- The logic to implement will be placed in the src/films.js file.
-
-- You don't need to show the result of each function on the screen. Your goal is to pass the tests.  More information on how to program oriented to pass tests at the end of the document.
-
-- Don't forget to include the capture of the test results in the virtual campus.
-
-
+¡Dime qué prefieres y lo hago! 🚀
